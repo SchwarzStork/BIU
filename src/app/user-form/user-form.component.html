@@ -1,0 +1,129 @@
+<form class="form-horizontal" role="form" novalidate [formGroup]="userForm">
+  <div class="form-group">
+    <div class="form-element">
+      <label>First name: </label>
+      <div>
+        <input type="text" formControlName="Name" [ngClass]="{ 'is-invalid':(userForm.get('Name').touched || userForm.get('Name').dirty) &&!userForm.get('Name').valid
+            }">
+      </div>
+    </div>
+    <div class="form-element">
+      <label>Last name: </label>
+      <div>
+        <input class="form-control" type="text" formControlName="Surname" [ngClass]="{ 'is-invalid':(userForm.get('Surname').touched || userForm.get('Surname').dirty) &&!userForm.get('Surname').valid
+              }">
+      </div>
+    </div>
+    <div class="form-element">
+      <label>Email: </label>
+      <div>
+        <input class="form-control" type="text" formControlName="Email" [ngClass]="{ 'is-invalid':(userForm.get('Email').touched || userForm.get('Email').dirty) &&!userForm.get('Email').valid
+              }">
+        <span *ngIf="(userForm.get('Email').touched || userForm.get('Email').dirty) &&!userForm.get('Email').valid"
+          class="help-block">"Invalid e-mail."</span>
+      </div>
+    </div>
+    <div class="form-element">
+      <label>Phone: </label>
+      <div>
+        <input class="form-control" type="text" formControlName="Phone" [ngClass]="{ 'is-invalid':userForm.get('Phone').valid
+              }">
+      </div>
+
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-element">
+      <label>City: </label>
+      <div>
+        <input class="form-control" type="text" formControlName="City" [ngClass]="{ 'is-invalid':(userForm.get('City').touched || userForm.get('City').dirty) &&!userForm.get('City').valid
+              }">
+      </div>
+    </div>
+    <div class="form-element">
+      <label>Street: </label>
+      <div>
+        <input class="form-control" type="text" formControlName="Street" [ngClass]="{ 'is-invalid':(userForm.get('Street').touched || userForm.get('Street').dirty) &&!userForm.get('Street').valid
+              }">
+      </div>
+    </div>
+    <div class="form-element">
+      <label>Building: </label>
+      <div>
+        <input class="form-control" type="text" formControlName="Building" [ngClass]="{ 'is-invalid':(userForm.get('Building').touched || userForm.get('Building').dirty) &&!userForm.get('Building').valid
+              }">
+      </div>
+    </div>
+    <div class="form-element">
+      <label>Flat no.: </label>
+      <div>
+        <input class="form-control" type="text" formControlName="FlatNo" [ngClass]="{ 'is-invalid':(userForm.get('FlatNo').touched || userForm.get('FlatNo').dirty) &&!userForm.get('FlatNo').valid
+              }">
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-element">
+      <div>
+        <label><input class="form-control" type="radio" name="Pet" value="Dog" formControlName="Pet"> Dog</label>
+        <label><input class="form-control" type="radio" name="Pet" value="Cat" formControlName="Pet"> Cat</label>
+        <label><input class="form-control" type="radio" name="Pet" value="Other" formControlName="Pet"> Other</label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-element">
+      <div>
+        <label>Newsletter: <input type="checkbox" formControlName="Newsletter" value="Newsletter"></label>
+      </div>
+    </div>
+
+    <div class="form-element">
+      <div>
+        <label>SMS: <input type="checkbox" formControlName="SMS" value="SMS"></label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-element">
+      <label>Username: </label>
+      <div>
+        <input class="form-control" type="text" formControlName="Username">
+        <span *ngIf="userExists" class="text-danger">This user already exists!</span>
+      </div>
+    </div>
+
+    <div formGroupName="pswdGroup">
+
+      <div class="form-element">
+        <label>Password: </label>
+        <div>
+          <input class="form-control" type="password" formControlName="Password" [ngClass]="{ 'has-error':(userForm.get('pswdGroup.Password').touched || userForm.get('pswdGroup.Password').dirty) &&!userForm.get('pswdGroup.Password').valid
+                }">
+
+          <span *ngIf="userForm.get('pswdGroup.Password').errors?.pattern">
+            {{passwordPatternMsg}}
+          </span>
+        </div>
+      </div>
+      <div class="form-element">
+        <label>Confirm Password: </label>
+        <div>
+          <input class="form-control" type="password" formControlName="PasswordR" [ngClass]="{ 'has-error':(userForm.get('pswdGroup.PasswordR').touched || userForm.get('pswdGroup.PasswordR').dirty) &&!userForm.get('pswdGroup.PasswordR').valid
+                }">
+          <span *ngIf="userForm.get('pswdGroup').errors?.matchPasswords">
+            {{matchPasswordsMsg}}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-element">
+    <label></label>
+    <div>
+      <button class="btn btn-primary" (click)="onSubmit()">Save Changes</button>
+      <span></span>
+      <input type="reset" class="btn btn-default" value="Cancel">
+    </div>
+  </div>
+</form>
